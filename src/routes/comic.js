@@ -71,8 +71,4 @@ function randomComicNumber(first, current) {
     return Math.floor(Math.random() * (current - first + 1) + first);
 }
 
-function readableTranscript(transcript) {
-    let dataToArray = transcript.split(']]').map
-}
-
 module.exports = comicsRouter
