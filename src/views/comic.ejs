@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XKDC #<%- num %> - CC Comics</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Source+Sans+Pro&family=Zen+Old+Mincho&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="main-head">
+            <h1><a href="/">XKCD</a> > #<%- num %></h1>
+        </header>
+
+        <main class="comic">
+            <% if(data != null) { %>
+            <h1><%- data.title %></h1>
+            <figure><img src="<%- data.img %>" alt="<%- data.alt %>"></figure>
+        </main>
+
+        <section class="stats">
+            <ul>
+                <li><strong>Views:</strong> <%- userCount %></li>
+                <li><strong>Posted on:</strong> <%- data.month %>/<%- data.day %>/<%- data.year %></li>
+            </ul>
+        </section>
+
+        <nav class="main-nav">
+            <ul>
+                <% if(num > 1) { %>
+                <li><a class="button" href="/<%- num - 1 %>">
+                        << Previous</a> </li> <% } %> <li><a class="button" href="/<%- random %>">Random</a></li>
+
+                <% if(num < currentNum) { %>
+                <% if(num + 1 === currentNum) { %>
+                <li><a class="button" href="/">Next >></a></li>
+                <% } 
+                    else { %>
+                <li><a class="button" href="/<%- num + 1 %>">Next >></a></li>
+                <% } %>
+                <% } %>
+            </ul>
+        </nav>
+
+        <section class="transcript">
+            <div>
+                <% if(data.transcript) { %>
+                <h2>Transcript</h2>
+                <p><%- data.transcript.replace(/\[\[/g,'<p><em id="highlighted">').replace(/\]\]/g,'</em></p>').replace(/{{Title text/g, '<br><br>{{Title text') %>
+                </p>
+                <% } 
+            
+                else { %>
+                <h2>Transcript</h2>
+                <p id="centered">No Transcript Found</p>
+                <% } %>
+            </div>
+        </section>
+
+        <% } 
+        else { %>
+        <p>No comic found.</p>
+        <% } %>
+    </div>
+</body>
+
+</html>
